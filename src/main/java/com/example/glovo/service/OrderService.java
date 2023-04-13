@@ -45,4 +45,12 @@ public class OrderService {
         Float totalCost = this.productRepository.add(ids, orderId);
         return this.orderRepository.add(totalCost, orderId);
     }
+
+    public int delete(int id) {
+        return this.orderRepository.delete(id);
+    }
+
+    public int deleteProduct(int orderId, int productId) {
+        return this.orderWithProductsRepository.deleteProduct(orderId, productId);
+    }
 }

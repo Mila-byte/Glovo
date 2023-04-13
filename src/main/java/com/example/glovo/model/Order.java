@@ -1,4 +1,5 @@
 package com.example.glovo.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -29,6 +29,9 @@ public class OrderRepository {
                 update order set cost = ? where order_id = ?
             """;
 
+    private final String delete = """
+                delete from order where order_id = ?
+            """;
 
     public OrderRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -55,5 +58,9 @@ public class OrderRepository {
     public Order add(Float totalCost, Integer orderId) {
         jdbcTemplate.update(updateOrder, totalCost, orderId);
         return jdbcTemplate.queryForObject(getById + orderId, new OrderRowMapper());
+    }
+
+    public int delete(int id) {
+        return jdbcTemplate.update(delete, id);
     }
 }
