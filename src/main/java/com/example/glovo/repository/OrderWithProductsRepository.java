@@ -16,8 +16,16 @@ public class OrderWithProductsRepository {
                 inner join product on order_product.product_id = product.id where order.order_id = 
             """;
 
+    private final String deleteProduct = """
+            delete from order_product where order_id = ? and product_id = ?
+            """;
+
     public OrderWithProductsRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public int deleteProduct(int orderId, int productId) {
+        return jdbcTemplate.update(deleteProduct, orderId, productId);
     }
 
     public List<OrderWithProducts> getByOrderId(int id) {
